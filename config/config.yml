@@ -1,0 +1,26 @@
+MODEL:
+  OUTPUT_PATH: "./weights/model.pth"
+  RESUME_PATH: ""
+  LR: 0.001
+  EPOCH: 80
+  TRAIN_THRESHOLD: 0.5
+  TEST_THRESHOLD: 0.8
+
+DATA:
+  RESIZE: [528, 528]
+  DEGREES: 359
+  TRANSLATE: 0.2 # Shift img_width * 0.2
+  TRAIN_BATCH_SIZE: 12
+  TEST_BATCH_SIZE: 16
+  VALIDATION_SIZE: 0.2
+  NUM_WORKERS: 4
+
+PATH:
+  TRAIN_SET: "./machine_data/images/train"
+  TEST_SET: "./machine_data/images/test"
+  TRAIN_CSV: ""
+  TEST_CSV: ""
+
+DEVICE:
+  GPU: 1
+  CUDA: True
