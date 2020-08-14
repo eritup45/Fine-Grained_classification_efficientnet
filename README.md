@@ -52,15 +52,11 @@ Test：
 
 > confusion matrix:
 
-> row[0] and col[0]:ng, row[1] and col[1]:ok
-
-> row -> pred, col -> ans
-
 > pred/ans ng  ok
 
-> ng
+> ng [831], [60]
 
-> ok
+> ok [4], [15]
 
 ---------
 ### 失敗做法與模型：
