@@ -51,7 +51,8 @@ Test：
 ![](https://i.imgur.com/KISAFH7.png)
 
 > confusion matrix:
-> row[0] and col[0]:ng, row[1] and col[1]:ok.
+
+> row[0] and col[0]:ng, row[1] and col[1]:ok
 
 > row -> pred, col -> ans
 
