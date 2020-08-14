@@ -56,6 +56,12 @@ Test：
 
 > row -> pred, col -> ans
 
+> pred/ans ng  ok
+
+> ng
+
+> ok
+
 ---------
 ### 失敗做法與模型：
 
