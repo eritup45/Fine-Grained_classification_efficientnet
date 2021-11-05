@@ -23,25 +23,28 @@ torchvision >= 0.6.1
 
 ## Data preparation
 
-    Download datatsets. [link](https://drive.google.com/drive/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG?usp=sharing)
-    
-    > 以上連結，資料格式已經處理好了 
+* Download datatsets. [link](https://drive.google.com/drive/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG?usp=sharing)
 
-    1. Download data, and put in "data". (Training: 3000, Testing: 3033)
-    > Images are catogoried to "./data/train" and "./data/test"
-    > There is "training_labels.txt", which specify the label of training data. 
-    > There is "testing_img_order.txt", which is the test order. (No Label)
+> 以上連結，資料格式已經處理好了 
+
+* Data location
+    * Download data, and put in "data". (Training: 3000, Testing: 3033)
+> Images are catogoried to "./data/train" and "./data/test"
+> There is "training_labels.txt", which specify the label of training data. 
+> There is "testing_img_order.txt", which is the test order. (No Label)
     
 ## Execute
 
-    2. Train: "python train.py"
-    3. Test: "python test.py"
-    
-    > PS. Modify config/config.yml for further adjustment.
+1. Train: "python train.py"
+2. Test: "python test.py"
+
+> PS. Modify config/config.yml for further adjustment.
     
 ## Pretrained model
-efficientnetb2: effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth
+* efficientnetb2: effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth
 https://drive.google.com/drive/u/1/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG
+
+* Train from scratch: download pretrained weight "efficientnet-b2-8bb594d6.pth" from [link.](https://github.com/lukemelas/EfficientNet-PyTorch/releases)
 
 ## 作法
 
