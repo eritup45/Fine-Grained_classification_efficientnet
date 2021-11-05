@@ -15,7 +15,8 @@ class probNet(nn.Module):
 
     def __init__(self):
         super(probNet, self).__init__()
-        eff_lite = torch.hub.load('rwightman/gen-efficientnet-pytorch', 'tf_efficientnet_lite0', pretrained=True)
+        # eff_lite = torch.hub.load('rwightman/gen-efficientnet-pytorch', 'tf_efficientnet_lite0', pretrained=True)
+        eff_b3 = torch.hub.load('rwightman/gen-efficientnet-pytorch', 'tf_efficientnet_b3', pretrained=True)
         self.model = nn.Sequential(*list(eff_lite.children())[:-1])
         self.prob_model = nn.Sequential(
             nn.Linear(eff_lite.classifier.in_features, 128),
@@ -37,7 +38,7 @@ def efficientnet_lite():
 
 def efficientnet_b1():
     model = EfficientNet.from_pretrained('efficientnet-b1')
-    model._fc.out_features = 2
+    model._fc.out_features = 200
     model = freeze_last_layers(model, 140)
     model = nn.Sequential(model, nn.Sigmoid())
     return model

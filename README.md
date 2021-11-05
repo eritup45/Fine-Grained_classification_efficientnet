@@ -1,126 +1,85 @@
-# Spinneret Classification
+# Bird Classification by efficientNet
 
-### Execute:
-    1. Download data, and put in "machine_data". 
-    > Remember to classify data into "ng" and "ok" folders. Split data into "Train"(75%) "Test"(25%) folders.
+## Objective
+Classify 200 bird species. 
+
+## Requirement
+
+1. conda create environment from file.
+```bash
+conda env create -f environment.yml
+conda activate TransFG
+```
+> May show some error. Just ignore them.
+
+2. install pytorch correspond to your cuda version.
+
+python 3.7
+
+PyTorch >= 1.5.1
+
+torchvision >= 0.6.1
+
+
+## Data preparation
+
+    Download datatsets. [link](https://drive.google.com/drive/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG?usp=sharing)
     
+    > 以上連結，資料格式已經處理好了 
+
+    1. Download data, and put in "data". (Training: 3000, Testing: 3033)
+    > Images are catogoried to "./data/train" and "./data/test"
+    > There is "training_labels.txt", which specify the label of training data. 
+    > There is "testing_img_order.txt", which is the test order. (No Label)
+    
+## Execute
+
     2. Train: "python train.py"
     3. Test: "python test.py"
     
     > PS. Modify config/config.yml for further adjustment.
     
-### 作法
+## Pretrained model
+efficientnetb2: effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth
+https://drive.google.com/drive/u/1/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG
 
-做法：先將small歸類於ng，再訓練，
+## 作法
 
-模型：efficientnet lite0(pretrained)，最後一層改成
-```python=
-self.prob_model = nn.Sequential(
-            nn.Linear(eff_lite.classifier.in_features, 128),
-            nn.Linear(128, 8),
-            nn.Linear(8, 1),
-            nn.Sigmoid(),
-        )
-```
+* 做法：EfficientNet-b1
+* Learning rate scheduler: warmup_cosine, warmup_linear, ReduceLROnPlateau
+* Optimizer: Adam
+* Loss function: cross entropy with label smoothing mechanism.
+* Random augmentation (N, M) = (2, 10)
 
-### 資料
 
-十字孔資料：
-原圖解析度：1056*1056
-ng張數：3565
-ok張數：79
-small張數：460
+## 資料
 
-訓練資料前處理：
-1. Resize成解析度[528, 528]
+鳥類資料：
+原圖解析度：(300~500)*(300~500)
+200種鳥類圖片
+
+* train valid 資料分割：
+隨機分配8:2
+
+
+* 訓練資料前處理：
+1. Resize成解析度[224, 224]
 2. 隨機水平、垂直翻轉
-3. 隨機旋轉九十度
+3. 隨機旋轉三十度
 4. 隨機位移20%的圖片長
+5. Normalize as ImageNet
 
-測試資料前處理：
-1. Resize成解析度[528, 528]
+* 測試資料前處理：
+1. Resize成解析度[224, 224]
 
-### 結果
-Train Loss：
+## 結果
+smooth_CrossEntropy: 
 
-Test：
-1. TEST_THRESHOLD = 0.5
-![](https://i.imgur.com/wxveyn8.png)
+Valid Loss: 1.840
 
-2. TEST_THRESHOLD = 0.8
-![](https://i.imgur.com/KISAFH7.png)
+Valid Acc: 70.0 %
 
-> confusion matrix:
-
-> pred/ans ng  ok
-
-> ng [831], [60]
-
-> ok [4], [15]
-
----------
-### 失敗做法與模型：
-
-#### 將small不歸類於任何一類：
-從頭訓練：
-==(成功)==
-![](https://i.imgur.com/tWLtidE.png)
-
-
-![](https://i.imgur.com/vNUIpra.png)
-
-weight: eff_lite/**epoch60_loss0.135_acc95_model.pth**
-
-model 資訊:
-![](https://i.imgur.com/4KBfM9L.png)
-
----
-==(成功)==
-![](https://i.imgur.com/RjhYIuQ.png)
-
-weight: **test_loss0.19_acc89_model.pth**
-
----
-
-(收斂失敗)
-![](https://i.imgur.com/2p2cap2.png)
-
-![](https://i.imgur.com/XEvo4ll.png)
-
-
-(做法有錯) (load 之前訓練的small歸類到ng)
-![](https://i.imgur.com/bC8RXSE.png)
-
-![](https://i.imgur.com/Dtjobhz.png)
-
-使用efficient lite0 pretrained model，freeze最後五層
-![](https://i.imgur.com/PM77nqX.png)
-
-![](https://i.imgur.com/t938nz9.png)
-
-
-#### 將small歸類於ng：
-
-從頭訓練:
-![](https://i.imgur.com/WiTimT5.png)
-
-![](https://i.imgur.com/ETyEsuL.png)
-
----
-
-![](https://i.imgur.com/V0Aawnh.png)
-
-![](https://i.imgur.com/lYsRKEd.png)
-
----
-
-![](https://i.imgur.com/yDjfs3K.png)
-
-![](https://i.imgur.com/506OW4d.png)
-
-
-
-
+Test score: 0.5536
 
 
 

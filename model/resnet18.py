@@ -1,4 +1,4 @@
-from torchvision.models import resnet18
+from torchvision.models import resnet18, resnext50_32x4d
 from torch import nn
 
 def resnet_18(num_class):
@@ -9,7 +9,10 @@ def resnet_18(num_class):
 
     # Another method
     model = resnet18(pretrained=True)
-    model.fc = nn.Linear(512, 2)
+    model = resnext50_32x4d(pretrained=True)
+    # model.fc = nn.Linear(512, num_class)
+    model.fc = nn.Linear(2048, num_class)
+    # print(model)
 
     # Load之前訓練model (Optional)
 #     if args.pretrained_model_path is not None:
@@ -18,6 +21,19 @@ def resnet_18(num_class):
     
     return model
 
+def freeze_last_layers(model, n):
+    # Freeze the last n layers
+    cnt = 0
+    for name, param in model.named_parameters():
+        param.requires_grad = False
+        cnt += 1
+    for i, (name, param) in enumerate(model.named_parameters()):
+        if i >= cnt - n:
+            param.requires_grad = True
+        print(name, param.requires_grad) 
+    return model
 
+if __name__ == '__main__':
+    freeze_last_layers(resnet_18(200), 0)
 
 

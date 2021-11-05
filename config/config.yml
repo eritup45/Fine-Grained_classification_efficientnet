@@ -1,26 +1,32 @@
 MODEL:
-  OUTPUT_PATH: "./weights/model.pth"
+  OUTPUT_PATH: "./weights/"
   RESUME_PATH: ""
+  FINAL_MODEL_PATH: "./weights/effb2_s_rand15_w/effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth"
+  EPOCH: 280
   LR: 0.001
-  EPOCH: 80
-  TRAIN_THRESHOLD: 0.5
-  TEST_THRESHOLD: 0.8
+  DECAY_TYPE: "warmup_cosine"  # "warmup_cosine", "warmup_linear", "ReduceLROnPlateau"
+  WARMUP_STEP: 250  
+  
 
 DATA:
-  RESIZE: [528, 528]
+  RESIZE: [224, 224]
   DEGREES: 359
   TRANSLATE: 0.2 # Shift img_width * 0.2
   TRAIN_BATCH_SIZE: 12
-  TEST_BATCH_SIZE: 16
-  VALIDATION_SIZE: 0.2
+  TEST_BATCH_SIZE: 1
+  VALIDATION_PROPORTION: 0.2
+  NUM_CLASS: 200
   NUM_WORKERS: 4
+  RAND_N: 2
+  RAND_M: 7
 
 PATH:
-  TRAIN_SET: "./machine_data/images/train"
-  TEST_SET: "./machine_data/images/test"
-  TRAIN_CSV: ""
-  TEST_CSV: ""
+  TRAIN_SET: "./data/train"
+  TEST_SET: "./data/test"
+  TRAIN_ANNOTATION: "./data/training_labels.txt"
+  TEST_ANNOTATION: "./data/testing_img_order.txt"
+
 
 DEVICE:
-  GPU: 1
+  GPU: 0
   CUDA: True
