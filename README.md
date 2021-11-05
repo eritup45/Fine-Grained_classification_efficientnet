@@ -23,15 +23,32 @@ torchvision >= 0.6.1
 
 ## Data preparation
 
-* Download datatsets. [link](https://drive.google.com/drive/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG?usp=sharing)
+1. Download datatsets. [link](https://drive.google.com/drive/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG?usp=sharing)
 
 > 以上連結，資料格式已經處理好了 
 
-* Data location
-    * Download data, and put in "data". (Training: 3000, Testing: 3033)
-> Images are catogoried to "./data/train" and "./data/test"
-> There is "training_labels.txt", which specify the label of training data. 
-> There is "testing_img_order.txt", which is the test order. (No Label)
+2. organize the structure as follows:
+```
+data
+├── classes.txt
+├── training_labels.txt
+├── testing_img_order.txt
+├── train
+│   ├── 1.jpg
+│   ├── 2.jpg
+│   └── ...
+└── test
+    ├── 1.jpg
+    ├── 2.jpg
+    └── ...
+```
+
+* Data information:
+    * Consist 200 classes of birds, and each category contains 15 pictures.
+    * (Training: 3000, Testing: 3033)
+    
+> "training_labels.txt" specify the label of training data. 
+> "testing_img_order.txt" is the test order. (No Label)
     
 ## Execute
 
