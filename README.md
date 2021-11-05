@@ -43,12 +43,12 @@ data
     └── ...
 ```
 
-* Data information:
+3. Data information:
     * Consist 200 classes of birds, and each category contains 15 pictures.
     * (Training: 3000, Testing: 3033)
-    
-> "training_labels.txt" specify the label of training data. 
-> "testing_img_order.txt" is the test order. (No Label)
+
+> * "training_labels.txt" specify the label of training data.
+> * "testing_img_order.txt" is the test order. (No Label)
     
 ## Execute
 
