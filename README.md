@@ -41,10 +41,9 @@ torchvision >= 0.6.1
 > PS. Modify config/config.yml for further adjustment.
     
 ## Pretrained model
-* efficientnetb2: effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth
-https://drive.google.com/drive/u/1/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG
+* efficientnetb2: [effb2_R4_ep7_vloss1.844_LR9.871247457565971e-06.pth](https://drive.google.com/drive/u/1/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG)
 
-* Train from scratch: download pretrained weight "efficientnet-b2-8bb594d6.pth" from [link.](https://github.com/lukemelas/EfficientNet-PyTorch/releases)
+* Train from scratch: download pretrained weight ["efficientnet-b2-8bb594d6.pth"](https://github.com/lukemelas/EfficientNet-PyTorch/releases)
 
 ## 作法
 
@@ -58,7 +57,7 @@ https://drive.google.com/drive/u/1/folders/11nUVfbylNeJ3zl3AUbCkn9_8c4Os1GbG
 ## 資料
 
 鳥類資料：
-原圖解析度：(300~500)*(300~500)
+原圖解析度：(300 ~ 500) * (300 ~ 500)
 200種鳥類圖片
 
 * train valid 資料分割：
