@@ -3,7 +3,7 @@
 ## Objective
 Classify 200 bird species. 
 
-## Requirement
+## Requirements
 
 1. conda create environment from file.
 ```bash
